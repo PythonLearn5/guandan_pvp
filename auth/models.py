@@ -1,6 +1,6 @@
 #encoding:utf8
 from db import db
-from flask.ext.security import UserMixin, RoleMixin
+from flask_security import UserMixin, RoleMixin
 
 class Role(db.Document, RoleMixin):
     name = db.StringField(max_length=80, unique=True)

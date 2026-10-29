@@ -1,7 +1,7 @@
 #encoding: utf8
 
 from flask import request, abort
-from flask.ext.admin import BaseView, expose
+from flask_admin import BaseView, expose
 from bson.objectid import ObjectId
 import sys
 import random
@@ -81,10 +81,10 @@ class BallotView(BaseView):
         """首轮抽签"""
         results = []
         teams = list(NameList.objects(game=game).order_by('no').all())
-        team_count = len(teams) / 2 * 2
+        team_count = len(teams) // 2 * 2
         if ballot_type == 'sequence':
             for i in range(0, team_count, 2):
-                result = dict(desk_no=i/2+1, red=teams[i], blue=teams[i+1])
+                result = dict(desk_no=i//2+1, red=teams[i], blue=teams[i+1])
                 results.append(result)
             return results
         else:
@@ -134,7 +134,7 @@ class RankView(BaseView):
         for index, team in enumerate(ranked_teams):
             record = {}
             record['rank'] = index + 1
-            record['rank_type'] = unicode(team.namelist)
+            record['rank_type'] = str(team.namelist)
             record['total_score'] = team.total_score
             record['total_sscore'] = team.total_sscore
             record['total_diff'] = team.total_diff
@@ -188,7 +188,7 @@ class RankView(BaseView):
         for team in teams.values():
             team.compute_sscore()
 
-        team_list = teams.values()
+        team_list = list(teams.values())
         random.shuffle(team_list)
         return sorted(team_list, key=attrgetter('total_score', 'total_sscore', 'total_diff'), reverse=True)
 

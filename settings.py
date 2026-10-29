@@ -7,13 +7,11 @@ BASIC_AUTH_FORCE = True
 
 
 """
-DB in remote host
+DB in local Docker container (guandan-mongo, no auth)
 """
-MONGODB_SETTINGS = {'db': "yourdb",
-                    'username': 'username',
-                    'password': 'pass',
-                     'host': 'host',
-                     'port': 27017
-                     }
+MONGODB_SETTINGS = {'db': "guandan",
+                    'host': 'localhost',
+                    'port': 27017
+                    }
 
 BABEL_DEFAULT_LOCALE = 'zh_Hans_CN'

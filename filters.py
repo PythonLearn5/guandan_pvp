@@ -11,5 +11,9 @@ class FilterGame(BaseMongoEngineFilter):
         return lazy_gettext('exact')
 
     def get_options(self, view):
-        game_list = [(obj.name, obj.name) for obj in Game.objects()]
-        return game_list
+        # 应用启动（构建视图缓存）时即会调用本方法；
+        # MongoDB 不可达时返回空列表，避免整个应用无法启动
+        try:
+            return [(obj.name, obj.name) for obj in Game.objects()]
+        except Exception:
+            return []

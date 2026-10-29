@@ -1,7 +1,7 @@
 #encoding: utf8
 
-from flask.ext.admin.contrib.mongoengine import ModelView
-from flask.ext.security import current_user
+from flask_admin.contrib.mongoengine import ModelView
+from flask_security import current_user
 
 class UserAdmin(ModelView):
     def is_accessible(self):

@@ -8,8 +8,10 @@ class MongoDB:
         self.port = port
         self.user = user
         self.password = password
-        self.conn = pymongo.Connection(self.host,int(self.port))
+        self.conn = pymongo.MongoClient(self.host, int(self.port),
+                                        username=self.user,
+                                        password=self.password,
+                                        authSource=dbname)
         self.db = self.conn[dbname]
-        self.db.authenticate(self.user,self.password)
 
 guandan_db = MongoDB(user='guandan', password='jiaojiao', dbname='guandan').db

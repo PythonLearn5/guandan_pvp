@@ -12,5 +12,5 @@ class NameList(db.Document):
     team_no = db.StringField(verbose_name=u'队伍编号')
     players = db.StringField(verbose_name=u'选手')
 
-    def __unicode__(self):
+    def __str__(self):
         return u'赛号：%d 选手：%s 单位：%s' % (self.no, self.players, self.company)

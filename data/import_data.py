@@ -19,7 +19,7 @@ def import_namelist():
         record['company'] = table.cell(i,0).value
         record['team_no'] = table.cell(i,1).value
         record['players'] = table.cell(i,2).value
-        guandan_db.name_list.insert(record)
+        guandan_db.name_list.insert_one(record)
 
 def import_gamerecord():
     book = xlrd.open_workbook(u'第二轮汇总表.xls')
@@ -52,6 +52,6 @@ def import_gamerecord():
         calced_teams.add(table.cell(i,1).value)
         calced_teams.add(table.cell(i,3).value)
         #print record
-        guandan_db.game_record.insert(record)
+        guandan_db.game_record.insert_one(record)
 
 import_gamerecord()

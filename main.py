@@ -1,9 +1,9 @@
 #encoding: utf8
 
 from flask import Flask, render_template
-from flask.ext.basicauth import BasicAuth
-from flask.ext.babel import Babel
-from flask.ext.admin import Admin, AdminIndexView
+from flask_basicauth import BasicAuth
+from flask_babel import Babel
+from flask_admin import Admin, AdminIndexView
 import namelist
 import game_record
 import game
@@ -18,7 +18,7 @@ db.init_app(app)
 babel = Babel(app)
 
 #admin
-admin = Admin(app, u'掼蛋赛事管理系统', template_mode='bootstrap3',  index_view=AdminIndexView(
+admin = Admin(app, u'掼蛋赛事管理系统', index_view=AdminIndexView(
                     name=u'主页',
                     template='admin/index.html',
                     url='/'

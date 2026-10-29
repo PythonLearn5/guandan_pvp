@@ -1,6 +1,6 @@
 #encoding: utf8
 
-from flask.ext.admin.contrib.mongoengine import ModelView
+from flask_admin.contrib.mongoengine import ModelView
 
 class GameAdmin(ModelView):
     page_size = 15
